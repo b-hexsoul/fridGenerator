@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fridGenerator</title>
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+</head>
+<body>
+
+<!-- navbar: foods, cocktails, and saved -->
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+            <div class="uk-navbar-left">
+    
+                <ul class="uk-navbar-nav">
+                    <li class="uk-active"><a href="#">fridGenerator</a></li>
+                    <li><a href="#">Foods</a></li>
+                    <li><a href="#">Cocktails/Drinks</a></li>
+                    <li><a href="#">Saved</a></li>
+                </ul>
+    
+            </div>
+        </nav>
+    </div>
+
+<br>
+<br>
+
+         
+<!-- Large Container -->
+    <div class="uk-container-xlarge">
+        <!-- form for input inside of a card -->
+        <div class="uk-container uk-container-xlarge"> 
+            <div class="uk-child-width-1-2@s" uk-grid>
+
+                <div>
+                    <div class="uk-card uk-card-default uk-card-large uk-card-body">
+                        <form>
+                            <fieldset class="uk-fieldset">
+                    
+                                <legend class="uk-legend">Drink Options</legend>
+                                <hr class="uk-divider-icon">
+                                <br>
+                                
+                            <!-- Input for what ingredients -->
+                                <div class="uk-margin">
+                                    What ingredients do you currently have? Please input one ingredient at a time.
+                                    <input class="uk-input" type="text" placeholder="Input Examples: pineapple, tomato juice, vodka, lemon">
+                                </div>
+                            <!-- Option for preference -->
+                                <div class="uk-margin">
+                                    <select class="uk-select">
+                                        <option>Sweet</option>
+                                        <option>Savory</option>
+                                    </select>
+                                </div>
+
+                                <br>
+                                <hr class="uk-divider-icon">
+                            <!-- Submit button -->
+                                <p uk-margin>
+                                    <button class="uk-button uk-button-default uk-button-small">Submit</button>
+                                </p>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+</body>
+</html>
