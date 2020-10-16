@@ -3,6 +3,8 @@
 const searchFoodBtn = $('#searchFoodBtn');
 const foodInput = $('#foodInput');
 const recipesEl = $('#recRecipesCard');
+const favRecipesEl = $('#favRecipesCard');
+const favLinkEl = $('.favLink');
 
 let queryUrl;
 let recipeSettings;
@@ -71,11 +73,32 @@ const createRecRecipeCards = function (response) {
 }
 
 // Render Favorite Recipes - When user reaches the favorites page, localstorage is accessed and recipe ids are retrieved, GET request based on id and populate cards
+const renderFavoriteRecipes = function (favRecipes) {
+  favRecipesEl.empty();
+  $.each(favRecipes, function (i, recipe) {
+    let div = $('<div>');
+    div.html(
+      `
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover">
+          <div class="uk-card-body">
+            <h3 id="recipeTitle" class="uk-card-title">${recipe.title}</h3>
+          </div>
+          <div class="uk-card-media-bottom">
+            <img id="recipeImg" src="${recipe.image}" alt="">
+          </div>
+        </div>
+      </div>
+      `
+    )
+    favRecipesEl.append(div);
+  })
+}
+
 
 // Render Favorite Drinks - When user reaches the favorites page, localstorage accessed 
 
 // Localstorage Save Recipes - recipes need to be saved by Id
-
 const recipeToStorage = function (id, title, image) {
   let recipes = getStoredRecipes();
   recipes.push({
@@ -86,6 +109,7 @@ const recipeToStorage = function (id, title, image) {
   localStorage.setItem('recipes', JSON.stringify(recipes));
 }
 
+// Localstorage Get Recipes
 const getStoredRecipes = function () {
   let recipes = localStorage.getItem('recipes')
   if (recipes !== null) {
@@ -94,9 +118,9 @@ const getStoredRecipes = function () {
     return [];
   }
 }
+
 // Localstorage Save Cocktails 
 
-// Possible save recipe button icon on recipe cards? 
 
 // Modal popup? Create modal and add to DOM when cards are created? 
 
