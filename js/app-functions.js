@@ -101,12 +101,16 @@ const renderFavoriteRecipes = function (favRecipes) {
 // Localstorage Save Recipes - recipes need to be saved by Id
 const recipeToStorage = function (id, title, image) {
   let recipes = getStoredRecipes();
-  recipes.push({
-    id: id,
-    title: title,
-    image: image,
-  })
-  localStorage.setItem('recipes', JSON.stringify(recipes));
+  // Validation to see if recipe is in favorites already
+  let recipeCheck = recipes.findIndex(recipe => recipe.id === id);
+  if (recipeCheck < 0) {
+    recipes.push({
+      id: id,
+      title: title,
+      image: image,
+    })
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+  }
 }
 
 // Localstorage Get Recipes
