@@ -1,29 +1,19 @@
-let ingredients = "bacon, flour cheese, fruit"
+let ingredients = '';
 
-ingredients.split(/[ , ]/);
+// Search Event - Uses ingredients to GET request spoonacular API for recipes
+searchFoodBtn.click(function (e) {
+  ingredients = inputEl.val().trim().split(', ')
+  createIngredientQuery(ingredients);
+  getRecRecipes();
+  inputEl.val('');
+})
 
-
-var settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=false&ingredients=apples,flour,sugar",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-		"x-rapidapi-key": "eceb5683acmsh105ea019445dccap110759jsn54872afdfd23"
-	}
-}
-
-$.ajax(settings)
-  .done(response => console.log(response))
-  .fail(err => console.log(err));
-
-
-
-
-// Search Button Event
-// 
-
-// Save recipe button
-// 
-
+// If user presses enter on input field after done inputting ingredients
+$('input').keypress(function (e) {
+  if (e.which == 13) {
+    ingredients = inputEl.val().trim().split(', ')
+    createIngredientQuery(ingredients);
+    getRecRecipes();
+    inputEl.val('');
+  }
+})
