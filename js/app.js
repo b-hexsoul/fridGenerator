@@ -1,6 +1,6 @@
-let ingredients = ['flour', 'mushrooms', 'bacon'];
+let ingredients = "bacon, flour cheese, fruit"
 
-
+ingredients.split(/[ , ]/);
 
 
 var settings = {
