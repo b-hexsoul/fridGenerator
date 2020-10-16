@@ -1,7 +1,7 @@
 // ingredients.split(/[ , ]/);
 
 const searchFoodBtn = $('#searchFoodBtn');
-const inputEl = $('input');
+const foodInput = $('#foodInput');
 const recipesEl = $('#recRecipesCard');
 
 let queryUrl;
@@ -50,11 +50,23 @@ const createRecRecipeCards = function (response) {
           <div class="uk-card-media-bottom">
             <img id="recipeImg" src="${recipe.image}" alt="">
           </div>
+          <div class="uk-card-footer">
+            <button class="uk-button uk-button-default favoriteRecipeBtn" data-id="${recipe.id}" data-title="${recipe.title}" data-image="${recipe.image}"><i class="fas fa-heart"></i></button>
+          </div>
         </div>
       </div>
       `
     )
     recipesEl.append(div);
+  })
+  
+  // Favorite Recipe Button Event
+  let favoriteRecipeBtn = $('.favoriteRecipeBtn')
+  favoriteRecipeBtn.click(function (e) {
+    let id = $(this).data('id');
+    let title = $(this).data('title');
+    let image = $(this).data('image');
+    recipeToStorage(id, title, image)
   })
 }
 
@@ -64,6 +76,24 @@ const createRecRecipeCards = function (response) {
 
 // Localstorage Save Recipes - recipes need to be saved by Id
 
+const recipeToStorage = function (id, title, image) {
+  let recipes = getStoredRecipes();
+  recipes.push({
+    id: id,
+    title: title,
+    image: image,
+  })
+  localStorage.setItem('recipes', JSON.stringify(recipes));
+}
+
+const getStoredRecipes = function () {
+  let recipes = localStorage.getItem('recipes')
+  if (recipes !== null) {
+    return JSON.parse(recipes);
+  } else {
+    return [];
+  }
+}
 // Localstorage Save Cocktails 
 
 // Possible save recipe button icon on recipe cards? 
@@ -74,7 +104,7 @@ const createRecRecipeCards = function (response) {
 
 
 // This is a response for recipes we can use
-// let exResponse = [{id: 611026, title: "Apple Crisp III", image: "https://spoonacular.com/recipeImages/611026-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 47950, title: "Cinnamon Apple Crisp", image: "https://spoonacular.com/recipeImages/47950-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 70306, title: "Easy Cinnamon Apple Pie", image: "https://spoonacular.com/recipeImages/70306-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}]
+let exResponse = [{id: 611026, title: "Apple Crisp III", image: "https://spoonacular.com/recipeImages/611026-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 47950, title: "Cinnamon Apple Crisp", image: "https://spoonacular.com/recipeImages/47950-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 70306, title: "Easy Cinnamon Apple Pie", image: "https://spoonacular.com/recipeImages/70306-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}]
 
 // $.each(exResponse, function(i, recipe) {
 //   let div = $('<div>');
