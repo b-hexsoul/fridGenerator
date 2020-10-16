@@ -68,14 +68,12 @@ const createRecRecipeCards = function (response) {
 
 // Possible save recipe button icon on recipe cards? 
 
-// Modal popup? 
+// Modal popup? Create modal and add to DOM when cards are created? 
 
 
 
 
-
-
-
+// This is a response for recipes we can use
 // let exResponse = [{id: 611026, title: "Apple Crisp III", image: "https://spoonacular.com/recipeImages/611026-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 47950, title: "Cinnamon Apple Crisp", image: "https://spoonacular.com/recipeImages/47950-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 70306, title: "Easy Cinnamon Apple Pie", image: "https://spoonacular.com/recipeImages/70306-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}]
 
 // $.each(exResponse, function(i, recipe) {
