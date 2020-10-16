@@ -1,7 +1,9 @@
-// Grab ingredients from input field
-// Split ingredients with regex into an array
-// Use loop to setup query url and add that to end of api call
 // ingredients.split(/[ , ]/);
+
+const searchFoodBtn = $('#searchFoodBtn');
+const inputEl = $('input');
+const recipesEl = $('#recRecipesCard');
+
 let queryUrl;
 let recipeSettings;
 
@@ -29,8 +31,52 @@ const createIngredientQuery = function (ingredients) {
 const getRecRecipes = function () {
   $.ajax(recipeSettings)
     // Once response promise is returned, put function here to paint the UI and display recipe summaries. 
-    .done(response => console.log(response))
+    .done(response => createRecipeCards(response))
     .fail(err => console.log(err));
 }
 
-// Create recommended recipe cards - 3 for now. 
+// Create recommended recipe cards - 3 for now
+const createRecipeCards = function (response) {
+  recipesEl.empty();
+  $.each(response, function (i, recipe) {
+    let div = $('<div>');
+    div.html(
+      `
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover">
+          <div class="uk-card-body">
+            <h3 id="recipeTitle" class="uk-card-title">${recipe.title}</h3>
+          </div>
+          <div class="uk-card-media-bottom">
+            <img id="recipeImg" src="${recipe.image}" alt="">
+          </div>
+        </div>
+      </div>
+      `
+    )
+    recipesEl.append(div);
+  })
+}
+
+
+// let exResponse = [{id: 611026, title: "Apple Crisp III", image: "https://spoonacular.com/recipeImages/611026-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 47950, title: "Cinnamon Apple Crisp", image: "https://spoonacular.com/recipeImages/47950-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 70306, title: "Easy Cinnamon Apple Pie", image: "https://spoonacular.com/recipeImages/70306-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}]
+
+// $.each(exResponse, function(i, recipe) {
+//   let div = $('<div>');
+//   div.html(
+//     `
+//     <div>
+//       <div class="uk-card uk-card-default uk-card-hover">
+//         <div class="uk-card-body">
+//           <h3 id="recipeTitle" class="uk-card-title">${recipe.title}</h3>
+//         </div>
+//         <div class="uk-card-media-bottom">
+//           <img id="recipeImg" src="${recipe.image}" alt="">
+//         </div>
+//       </div>
+//     </div>
+//     `
+//   )
+//   recipesEl.append(div);
+// })
+
