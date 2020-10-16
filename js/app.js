@@ -26,3 +26,4 @@ $.ajax(settings)
 
 // Save recipe button
 // 
+
