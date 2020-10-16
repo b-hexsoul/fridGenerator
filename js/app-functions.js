@@ -31,12 +31,12 @@ const createIngredientQuery = function (ingredients) {
 const getRecRecipes = function () {
   $.ajax(recipeSettings)
     // Once response promise is returned, put function here to paint the UI and display recipe summaries. 
-    .done(response => createRecipeCards(response))
+    .done(response => createRecRecipeCards(response))
     .fail(err => console.log(err));
 }
 
 // Create recommended recipe cards - 3 for now
-const createRecipeCards = function (response) {
+const createRecRecipeCards = function (response) {
   recipesEl.empty();
   $.each(response, function (i, recipe) {
     let div = $('<div>');
@@ -57,6 +57,23 @@ const createRecipeCards = function (response) {
     recipesEl.append(div);
   })
 }
+
+// Render Favorite Recipes - When user reaches the favorites page, localstorage is accessed and recipe ids are retrieved, GET request based on id and populate cards
+
+// Render Favorite Drinks - When user reaches the favorites page, localstorage accessed 
+
+// Localstorage Save Recipes - recipes need to be saved by Id
+
+// Localstorage Save Cocktails 
+
+// Possible save recipe button icon on recipe cards? 
+
+// Modal popup? 
+
+
+
+
+
 
 
 // let exResponse = [{id: 611026, title: "Apple Crisp III", image: "https://spoonacular.com/recipeImages/611026-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 47950, title: "Cinnamon Apple Crisp", image: "https://spoonacular.com/recipeImages/47950-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 70306, title: "Easy Cinnamon Apple Pie", image: "https://spoonacular.com/recipeImages/70306-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}]
