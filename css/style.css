@@ -9,6 +9,7 @@
     
 }
 
-#searchForm {
-    
-    }
+ul.uk-slider-items {
+    height: 450px !important;
+    margin: 0px !important;
+}
