@@ -54,9 +54,9 @@ const createRecipeDetailQuery = function (recipeId) {
 }
 
 // Ajax call for spoonacular API recipe details
-const getRecipeDetails = function (i) {
+const getRecipeDetails = function () {
   $.ajax(recipeDetailSettings)
-  .done(response => createModal(i, response))
+  .done(response => createModal(response.id, response))
   .fail(err => console.log(err));
 }
 
@@ -74,7 +74,7 @@ const createRecRecipeCards = function (response) {
       `
       <div>
         <div class="uk-card uk-card-default uk-card-hover">
-          <div uk-toggle="target: #foodmodal${i}">
+          <div uk-toggle="target: #foodmodal${recipe.id}">
             <div class="uk-card-body">
               <h3 id="recipeTitle" class="uk-card-title">${recipe.title}</h3>
             </div>
@@ -83,7 +83,7 @@ const createRecRecipeCards = function (response) {
             </div>
           </div>
           <div class="uk-card-footer">
-            <button class="uk-button uk-button-default favoriteRecipeBtn" data-modal="#foodmodal${i}" data-id="${recipe.id}" data-title="${recipe.title}" data-image="${recipe.image}"><i class="fas fa-heart"></i></button>
+            <button class="uk-button uk-button-default favoriteRecipeBtn" data-modal="#foodmodal${recipe.id}" data-id="${recipe.id}" data-title="${recipe.title}" data-image="${recipe.image}"><i class="fas fa-heart"></i></button>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@ const createRecRecipeCards = function (response) {
     )
     recipesEl.append(div);
     createRecipeDetailQuery(recipe.id);
-    getRecipeDetails(i)
+    getRecipeDetails()
   })
   
   // Favorite Recipe Button Event - Once clicked saves to localstorage
@@ -114,15 +114,13 @@ const createRecRecipeCards = function (response) {
   })
 }
 
-
-
 // Create Modal for each rec recipe card
-const createModal = function (i, recipe) {
+const createModal = function (id, recipe) {
   // Create Modal HTML for DOM
   let div = $('<div>');
   div.html(
     `
-    <div id="foodmodal${i}" uk-modal>
+    <div id="foodmodal${id}" uk-modal>
       <div class="uk-modal-dialog uk-modal-body">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <h1 class="title">${recipe.title}</h1>
@@ -146,12 +144,13 @@ const createModal = function (i, recipe) {
 // Render Favorite Recipes - When user reaches the favorites page, localstorage is accessed and recipe ids are retrieved, GET request based on id and populate cards
 const renderFavoriteRecipes = function (favRecipes) {
   favRecipesEl.empty();
+  modalContainer.empty();
   $.each(favRecipes, function (i, recipe) {
     let div = $('<div>');
     div.html(
       `
       <div class="uk-margin-top uk-padding-small">
-        <div class="uk-card uk-card-default uk-card-hover">
+        <div uk-toggle="target: #foodmodal${recipe.id}">
           <div class="uk-card-body">
             <h3 id="recipeTitle" class="uk-card-title">${recipe.title}</h3>
           </div>
@@ -163,6 +162,9 @@ const renderFavoriteRecipes = function (favRecipes) {
       `
     )
     favRecipesEl.append(div);
+    let recipeDetails = getStoredRecipeDetails();
+    let details = recipeDetails.find(detail => detail.id === recipe.id)
+    createModal(recipe.id, details)
   })
 }
 
