@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/uikit.min.css" />
   <script src="js/uikit.min.js"></script>
   <script src="js/uikit-icons.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
 
   <title>fridGenerator</title>
 
@@ -19,9 +20,8 @@
                 <ul class="uk-navbar-nav">
                     <li><a href="index.html">Recipes</a></li>
                     <li class="uk-active"><a href="drinks.html">Drinks</a></li>
-                    <li><a href="favorites.html">Favorites</a></li>
+                    <li><a class="favLink" href="favorites.html">Favorites</a></li>
                 </ul>
-    
             </div>
         </nav>
       </div>
@@ -36,19 +36,109 @@
           <input class="uk-input" type="text" placeholder="Input">
         </div>
         
-        <button class="uk-button uk-button-default">Submit</button>
+        <button id="searchBtn" class="uk-button uk-button-default">Submit</button>
       </div>
 <br>
-      <div class="uk-card uk-card-default uk-card-body">
-
+    <div class="uk-card uk-card-default uk-card-body">
+    
         <h3 class="uk-card-title">Recommended Drinks</h3>
+    
+    
+    
+        <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+            <div>
+                <div>
+                    <div class="uk-card uk-card-default">
+    
+                        <div class="uk-button uk-button-default" style="border: none;" href="#modal-full" uk-toggle>
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Media Bottom</h3>
+    
+                            </div>
+                            <div class="uk-card-media-bottom">
+                                <img src=https://picsum.photos/300/200 alt="">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <button id="favoritesBtnDrinks" class="uk-button uk-button-default"><i
+                                class="fas fa-heart fa-2x"></i></button>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div class="uk-card uk-card-default">
+    
+                        <div class="uk-button uk-button-default" style="border: none;" href="#modal-full" uk-toggle>
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Media Bottom</h3>
+    
+                            </div>
+                            <div class="uk-card-media-bottom">
+                                <img src=https://picsum.photos/300/200 alt="">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <button id="favoritesBtnDrinks" class="uk-button uk-button-default"><i
+                                class="fas fa-heart fa-2x"></i></button>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div class="uk-card uk-card-default">
+    
+                        <div class="uk-button uk-button-default" style="border: none;" href="#modal-full" uk-toggle>
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Media Bottom</h3>
+    
+                            </div>
+                            <div class="uk-card-media-bottom">
+                                <img src=https://picsum.photos/300/200 alt="">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <button id="favoritesBtnDrinks" class="uk-button uk-button-default"><i
+                                class="fas fa-heart fa-2x"></i></button>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
 
 
-      </div>
 
-
-
-
+<!-- code for modal -->
+    <div id="modal-full" class="uk-modal-full" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+            <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+                <div class="uk-background-cover" style="background-image: url('images/photo.jpg');" uk-height-viewport></div>
+                <div class="uk-padding-large">
+                    <h1 id="title">Title</h1>
+                    <p id="cookTime">Cook Time:</p>
+                    <p id="servings"> Servings:</p>
+                    <ul>
+                        <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
+                        <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
+                        <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
+                        <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
+                        <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

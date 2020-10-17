@@ -3,60 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="css/uikit.min.css" />
   <script src="js/uikit.min.js"></script>
   <script src="js/uikit-icons.min.js"></script>
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
   <title>fridGenerator</title>
-
 </head>
 <body>
   <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
     <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
         <div class="uk-navbar-left">
-
             <ul class="uk-navbar-nav">
                 <li class="uk-active"><a href="index.html">Recipes</a></li>
                 <li><a href="drinks.html">Drinks</a></li>
-                <li><a href="favorites.html">Favorites</a></li>
+                <li><a class="favLink" href="favorites.html">Favorites</a></li>
             </ul>
-
         </div>
     </nav>
   </div>
 
     <div class="uk-container uk-container-muted uk-container-expand">
-     
       <div class="uk-card uk-card-default uk-card-body">
-        
         <h3 class="uk-card-title">What's in your fridG?</h3>
-        
         <div class="uk-margin">
-          <input class="uk-input" type="text" placeholder="Ingredients">
+          <input id="foodInput" class="uk-input" type="text" placeholder="Ingredients">
         </div>
-        
-        <button class="uk-button uk-button-default">Submit</button>
+        <button id="searchFoodBtn" class="uk-button uk-button-default">Submit</button>
       </div>
-<br>
-      <div class="uk-card uk-card-default uk-card-body">
 
+      <div class="uk-card uk-card-default uk-card-body uk-margin-top">
         <h3 class="uk-card-title">Recommended Recipes</h3>
-
-
+        <div id="recRecipesCard" class="uk-child-width-expand@s uk-text-center" uk-grid>
+        </div>
       </div>
-
-
-
-
-
-
-
-
     </div>
 
-
-
-   
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="./js/app-functions.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
