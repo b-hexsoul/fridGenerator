@@ -79,7 +79,7 @@ const renderFavoriteRecipes = function (favRecipes) {
     let div = $('<div>');
     div.html(
       `
-      <div>
+      <div class="uk-margin-top uk-padding-small">
         <div class="uk-card uk-card-default uk-card-hover">
           <div class="uk-card-body">
             <h3 id="recipeTitle" class="uk-card-title">${recipe.title}</h3>
