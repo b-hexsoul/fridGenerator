@@ -83,7 +83,7 @@ const createRecRecipeCards = function (response) {
             </div>
           </div>
           <div class="uk-card-footer">
-            <button class="uk-button uk-button-default favoriteRecipeBtn" data-id="${recipe.id}" data-title="${recipe.title}" data-image="${recipe.image}"><i class="fas fa-heart"></i></button>
+            <button class="uk-button uk-button-default favoriteRecipeBtn" data-modal="#foodmodal${i}" data-id="${recipe.id}" data-title="${recipe.title}" data-image="${recipe.image}"><i class="fas fa-heart"></i></button>
           </div>
         </div>
       </div>
@@ -97,12 +97,24 @@ const createRecRecipeCards = function (response) {
   // Favorite Recipe Button Event - Once clicked saves to localstorage
   let favoriteRecipeBtn = $('.favoriteRecipeBtn')
   favoriteRecipeBtn.click(function (e) {
+    let modalId = $(this).data('modal');
+    let summaryEl = $(`${modalId} .summary`)
+    let cookTimeEl = $(`${modalId} .readyInMinutes`)
+    let servingsEl = $(`${modalId} .servings`)
+    let linkEl = $(`${modalId} .link`)
     let id = $(this).data('id');
     let title = $(this).data('title');
     let image = $(this).data('image');
+    let cookTime = cookTimeEl.text();
+    let servings = servingsEl.text();
+    let summary = summaryEl.text();
+    let link = linkEl.attr('href');
     recipeToStorage(id, title, image)
+    recipeDetailToStorage(id, title, image, cookTime, servings, summary, link);
   })
 }
+
+
 
 // Create Modal for each rec recipe card
 const createModal = function (i, recipe) {
@@ -116,13 +128,12 @@ const createModal = function (i, recipe) {
         <h1 class="title">${recipe.title}</h1>
         <div class="uk-padding-large" uk-overflow-auto>
           <img src="${recipe.image}" alt="">
-          <p class="cookTime">Ready in: ${recipe.readyInMinutes}</p>
-          <p class="servings"> Servings: ${recipe.servings}</p>
+          <p>Ready in: <span class="readyInMinutes">${recipe.readyInMinutes}</span></p>
+          <p> Servings: <span class="servings">${recipe.servings}</span></p>
           <p class="summary">${recipe.summary}</p>
-          <a href="${recipe.sourceUrl}" target="_blank">Recipe Website</a>
+          <a class="link" href="${recipe.sourceUrl}" target="_blank">Recipe Website</a>
           <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-primary" type="button">Save</button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Back</button>
           </p>
         </div>
       </div>
