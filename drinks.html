@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/uikit.min.css" />
   <script src="js/uikit.min.js"></script>
   <script src="js/uikit-icons.min.js"></script>
@@ -13,8 +15,8 @@
 
 </head>
 <body>
-    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-        <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+    <div class="uk-inline" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <nav class="uk-navbar-container " uk-navbar style="position: relative; z-index: 980;">
             <div class="uk-navbar-left">
     
                 <ul class="uk-navbar-nav">
@@ -26,11 +28,14 @@
         </nav>
       </div>
 
+  
+        
+    <div id="background" class="uk-background-primary">
     <div class="uk-container">
-      <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+      <div id="searchRecipes" class="uk-card uk-card-default uk-card-body uk-margin-top">
         <h3 class="uk-card-title">What's your drink?</h3>
         <div class="uk-margin">
-          <input class="uk-input" type="text" placeholder="Input">
+          <input id="searchForm" class="uk-input" type="text" placeholder="Input">
         </div>
         <button id="searchBtn" class="uk-button uk-button-default">Submit</button>
       </div>
@@ -97,6 +102,8 @@
         </div>
       </div>
     </div>
+  </div>
+ 
 
 
 
@@ -109,13 +116,8 @@
         <img src="https://spoonacular.com/recipeImages/611026-312x231.jpg" alt="">
         <p id="cookTime">Cook Time:</p>
         <p id="servings"> Servings:</p>
-        <ul>
-            <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
-            <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
-            <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
-            <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
-            <li> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, repellat consequuntur est consectetur, magni quam deleniti quae quas molestiae vitae vero vel hic ut quasi sint repudiandae. Distinctio, autem assumenda!</li>
-        </ul>
+       
+        <p id="summary">Summary: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima eveniet soluta corporis. Harum animi tempore dignissimos! Sint explicabo, nemo doloribus sequi voluptatum veniam distinctio, minus eligendi quaerat laudantium perspiciatis eos.</p>
         <p class="uk-text-right">
           <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
           <button class="uk-button uk-button-primary" type="button">Save</button>
