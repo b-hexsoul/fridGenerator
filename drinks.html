@@ -28,9 +28,61 @@
         </nav>
       </div>
 
-  
+  <!-- slideshow -->
+  <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
+    <!-- slider & pictures -->
+        <ul class="uk-slider-items uk-grid">
+            <li class="uk-width-3-4">
+                <div class="uk-panel">
+                    <img src="drink_images/adam-jaime-dmkmrNptMpw-unsplash.jpg" alt="">
+                    <div class="uk-position-center uk-panel"></div>
+                </div>
+            </li>
+            <li class="uk-width-3-4">
+                <div class="uk-panel">
+                    <img src="drink_images/vino-li-pCjw_ygKCv0-unsplash.jpg" alt="">
+                    <div class="uk-position-center uk-panel"></div>
+                </div>
+            </li>
+            <li class="uk-width-3-4">
+                <div class="uk-panel">
+                    <img src="drink_images/giovanna-gomes-_8KV86shhPo-unsplash.jpg" alt="">
+                    <div class="uk-position-center uk-panel"></div>
+                </div>
+            </li>
+            <li class="uk-width-3-4">
+                <div class="uk-panel">
+                    <img src="drink_images/kobby-mendez-xBFTjrMIC0c-unsplash.jpg" alt="">
+                    <div class="uk-position-center uk-panel"></div>
+                </div>
+            </li>
+            <li class="uk-width-3-4">
+                <div class="uk-panel">
+                    <img src="drink_images/rayia-soderberg-ezSFnAFi9hY-unsplash.jpg" alt="">
+                    <div class="uk-position-center uk-panel"></div>
+                </div>
+            </li>
+        </ul>
+    <!-- darkening of the pictures -->
+        <div class="uk-overlay-primary uk-position-cover"></div>
+        <div class="uk-overlay uk-position-center uk-light">
+    
+    <!-- input for drinks -->
+          <div class="uk-container">
+              <h3 class="title">What's your drink?</h3>
+              <div class="uk-margin">
+                <input id="foodInput" class="uk-input" type="text" placeholder="Ingredients">
+              </div>
+              <button id="searchFoodBtn" class="uk-button uk-button-default">Submit</button>
+          </div>
         
-    <div id="background" class="uk-background-primary">
+        </div>
+    <!-- navigation bars -->
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+    
+    </div>
+        
     <div class="uk-container">
       <div id="searchRecipes" class="uk-card uk-card-default uk-card-body uk-margin-top">
         <h3 class="uk-card-title">What's your drink?</h3>
