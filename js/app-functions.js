@@ -38,6 +38,10 @@ const getRecRecipes = function () {
 }
 
 // Create recommended recipe cards - 3 for now
+// for each recipe, create card, then create modal
+// create event handler for click on card; when card clicked, modal pops up, event function runs,
+// event function creates ajax request for recipe details, details are populated
+// Recipe save button on modal? 
 const createRecRecipeCards = function (response) {
   recipesEl.empty();
   $.each(response, function (i, recipe) {
@@ -62,7 +66,7 @@ const createRecRecipeCards = function (response) {
     recipesEl.append(div);
   })
   
-  // Favorite Recipe Button Event
+  // Favorite Recipe Button Event - Once clicked saves to localstorage
   let favoriteRecipeBtn = $('.favoriteRecipeBtn')
   favoriteRecipeBtn.click(function (e) {
     let id = $(this).data('id');
