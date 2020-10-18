@@ -143,7 +143,7 @@ const createRecDrinkCards = function (response) {
             </div>
           </div>
           <div class="uk-card-footer">
-            <button class="uk-button uk-button-default favoriteRecipeBtn" data-modal="#drinkmodal${drink.idDrink}" data-id="${drink.idDrink}" data-title="${drink.strDrink}" data-image="${drink.strDrinkThumb}"><i class="fas fa-heart"></i></button>
+            <button class="uk-button uk-button-default favoriteDrinkBtn" data-modal="#drinkmodal${drink.idDrink}" data-id="${drink.idDrink}" data-title="${drink.strDrink}" data-image="${drink.strDrinkThumb}"><i class="fas fa-heart"></i></button>
           </div>
         </div>
       </div>
@@ -152,6 +152,23 @@ const createRecDrinkCards = function (response) {
     drinksEl.append(div);
     createDrinkDetailQuery(drink.idDrink);
     getDrinkDetails(drink.idDrink);
+  })
+
+  // Favorite Drink Button Event - Once clicked saves to localstorage
+  let favoriteDrinkBtn = $('.favoriteDrinkBtn')
+  favoriteDrinkBtn.click(function (e) {
+    let modalId = $(this).data('modal');
+    let summaryEl = $(`${modalId} .summary`)
+    let ingredientsEl = $(`${modalId} .ingredients`)
+
+    let id = $(this).data('id');
+    let title = $(this).data('title');
+    let image = $(this).data('image');
+    let summary = summaryEl.text();
+    let ingredients = ingredientsEl.text();
+
+    drinkToStorage(id, title, image)
+    drinkDetailToStorage(id, title, image, summary, ingredients);
   })
 };
 

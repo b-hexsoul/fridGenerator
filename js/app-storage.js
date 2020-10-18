@@ -54,3 +54,53 @@ const getStoredRecipeDetails = function () {
 
 
 // Localstorage Save Cocktails 
+const drinkToStorage = function (id, title, image) {
+  let drinks = getStoredDrinks();
+  // Validation to see if drink is in favorites already
+  let drinkCheck = drinks.findIndex(drink => drink.id === id);
+  if (drinkCheck < 0) {
+    drinks.push({
+      id: id,
+      title: title,
+      image: image,
+    })
+    localStorage.setItem('drinks', JSON.stringify(drinks));
+  }
+}
+
+// Localstorage Get Drinks
+const getStoredDrinks = function () {
+  let drinks = localStorage.getItem('drinks')
+  if (drinks !== null) {
+    return JSON.parse(drinks);
+  } else {
+    return [];
+  }
+}
+
+// LocalStorage Save drink details
+const drinkDetailToStorage = function (id, title, image, summary, ingredients) {
+  let drinkDetails = getStoredDrinkDetails();
+  // Validation to see if recipe is in favorites already
+  let drinkDetailCheck = drinkDetails.findIndex(drinkDetails => drinkDetails.id === id);
+  if (drinkDetailCheck < 0) {
+    drinkDetails.push({
+      id: id,
+      title: title,
+      image: image,
+      summary: summary,
+      ingredients: ingredients
+    })
+    localStorage.setItem('drinkDetails', JSON.stringify(drinkDetails));
+  }
+}
+
+// Localstorage get Drink Detail
+const getStoredDrinkDetails = function () {
+  let drinkDetails = localStorage.getItem('drinkDetails')
+  if (drinkDetails !== null) {
+    return JSON.parse(drinkDetails);
+  } else {
+    return [];
+  }
+}
