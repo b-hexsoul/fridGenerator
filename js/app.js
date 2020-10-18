@@ -31,4 +31,4 @@ $(window).on("load", function () {
 })
 
 // Slider element for "Jumbotron"
-var slider = UIkit.slider(element, {autoplay});
+UIkit.slider(element).startAutoplay();
