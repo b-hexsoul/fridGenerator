@@ -1,12 +1,7 @@
-#background {
-    background-image: url("p1-background.jpg");
-}
 
-
-#searchRecipes {
-
-  opacity: .90;
-    
+div.uk-container {
+  background-image: url("background.jpg");
+  background-size: 650px;
 }
 
 ul.uk-slider-items {
@@ -21,7 +16,9 @@ img {
 
 i.fa-heart {
   color:#666666;
+  /* after being clicked, can the heart be this color? #ffcccc; */
 }
+
 
 button.favoriteRecipeBtn {
   border: 0cm;
@@ -33,3 +30,4 @@ div.uk-navbar-left{
   color: #29a3a3;
   padding-left: 10px;
 }
+
