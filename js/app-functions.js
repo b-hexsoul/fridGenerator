@@ -235,7 +235,6 @@ const createFavDrinkModal = function (id, drink) {
 
 const renderFavoriteDrinks = function (favDrinks) {
   favDrinksEl.empty();
-  modalContainer.empty();
   $.each(favDrinks, function (i, drink) {
     let div = $('<div>');
     div.html(
