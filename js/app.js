@@ -29,3 +29,6 @@ $(window).on("load", function () {
     renderFavoriteRecipes(favRecipes);
   }
 })
+
+// Slider element for "Jumbotron"
+var slider = UIkit.slider(element, {autoplay});
