@@ -1,9 +1,10 @@
-let ingredients = '';
+let ingredientsFood = '';
+let ingredientsDrink = '';
 
 // Search Event - Uses ingredients to GET request spoonacular API for recipes
 searchFoodBtn.click(function (e) {
-  ingredients = foodInput.val().trim().split(', ')
-  createIngredientQuery(ingredients);
+  ingredientsFood = foodInput.val().trim().split(', ')
+  createIngredientQuery(ingredientsFood);
   // getRecRecipes();
   // delete below and uncomment above when ready for production, below uses prepopulated ingredients query
   createRecRecipeCards(exResponse);
@@ -20,6 +21,22 @@ searchFoodBtn.click(function (e) {
 //   }
 // })
 
+// Drinks page
+// Drink search Event
+searchDrinkBtn.click(function (e) {
+  ingredientsDrink = drinkInput.val().trim().split(', ')
+  createDrinkIngredientQuery(ingredientsDrink);
+  getRecDrinks()
+  drinkInput.val();
+})
+
+
+
+
+
+
+
+// Favorites Page
 // Favorites page event - populate favorites from local storage.
 $(window).on("load", function () {
   if (window.location.href.match('/favorites.html') != null) {
@@ -29,6 +46,3 @@ $(window).on("load", function () {
     renderFavoriteRecipes(favRecipes);
   }
 })
-
-// Slider element for "Jumbotron"
-UIkit.slider(element).startAutoplay();
