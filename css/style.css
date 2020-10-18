@@ -1,7 +1,11 @@
-body {
+/* body {
   background-image: url("background2.jpg");
   background-repeat: repeat;
   background-size: 850px;
+} */
+div.uk-container {
+  background-image: url("background1.jpg");
+  background-size: 640px;
 }
 
 ul.uk-slider-items {
