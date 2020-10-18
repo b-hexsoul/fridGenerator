@@ -7,6 +7,7 @@ const drinkInput = $('#drinkInput');
 const recipesEl = $('#recRecipesCard');
 const drinksEl = $('#recDrinksCard');
 const favRecipesEl = $('#favRecipesCard');
+const favDrinksEl = $('#favDrinksCard');
 const favLinkEl = $('.favLink');
 const modalContainer = $('.modalContainer')
 
@@ -116,7 +117,7 @@ const renderFavoriteRecipes = function (favRecipes) {
     favRecipesEl.append(div);
     let recipeDetails = getStoredRecipeDetails();
     let details = recipeDetails.find(detail => detail.id === recipe.id)
-    createModal(recipe.id, details)
+    createFoodModal(recipe.id, details)
   })
 }
 
@@ -205,6 +206,57 @@ const createDrinkModal = function (id, drink) {
     `
   )
   modalContainer.append(div);
+}
+
+const createFavDrinkModal = function (id, drink) {
+  // Create Modal HTML for DOM
+  let div = $('<div>');
+  div.html(
+    `
+    <div id="drinkmodal${id}" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h1 class="title">${drink.title}</h1>
+        <div class="uk-padding-large" uk-overflow-auto>
+          <img src="${drink.image}" alt="">
+          <p class="summary">${drink.summary}</p>
+          <p>Ingredients: <span class="ingredients">${drink.ingredients}</span></p>
+          <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Back</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    `
+  )
+  modalContainer.append(div);
+}
+
+
+const renderFavoriteDrinks = function (favDrinks) {
+  favDrinksEl.empty();
+  modalContainer.empty();
+  $.each(favDrinks, function (i, drink) {
+    let div = $('<div>');
+    div.html(
+      `
+      <div class="uk-margin-top uk-padding-small">
+        <div uk-toggle="target: #drinkmodal${drink.id}">
+          <div class="uk-card-body">
+            <h3 id="drinkTitle" class="uk-card-title">${drink.title}</h3>
+          </div>
+          <div class="uk-card-media-bottom">
+            <img id="drinkImg" src="${drink.image}" alt="">
+          </div>
+        </div>
+      </div>
+      `
+    )
+    favDrinksEl.append(div);
+    let drinkDetails = getStoredDrinkDetails();
+    let details = drinkDetails.find(detail => detail.id === drink.id)
+    createFavDrinkModal(drink.id, details)
+  })
 }
 
 // This is a response for recipes we can use
