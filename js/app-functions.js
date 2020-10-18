@@ -1,64 +1,16 @@
 // ingredients.split(/[ , ]/);
 
 const searchFoodBtn = $('#searchFoodBtn');
+const searchDrinkBtn = $('#searchDrinkBtn');
 const foodInput = $('#foodInput');
+const drinkInput = $('#drinkInput');
 const recipesEl = $('#recRecipesCard');
+const drinksEl = $('#recDrinksCard');
 const favRecipesEl = $('#favRecipesCard');
+const favDrinksEl = $('#favDrinksCard');
 const favLinkEl = $('.favLink');
 const modalContainer = $('.modalContainer')
 
-let recipeQueryUrl;
-let recipeSettings;
-let recipeDetailSettings;
-
-// Create query to attach to end of url for recommended recipes call
-const createIngredientQuery = function (ingredients) {
-  recipeQueryUrl = '';
-  $.each(ingredients, function(i, ingredient) {
-    recipeQueryUrl += `${ingredient},`
-  })
-
-  // Spoonacular settings for fridge search
-  recipeSettings = {
-    "async": true,
-    "crossDomain": true,
-    "url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=3&ranking=1&ignorePantry=false&ingredients=${recipeQueryUrl}`,
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      "x-rapidapi-key": "eceb5683acmsh105ea019445dccap110759jsn54872afdfd23"
-    }
-  }
-}
-
-// Ajax call for spoonacular API
-const getRecRecipes = function () {
-  $.ajax(recipeSettings)
-    // Once response promise is returned, put function here to paint the UI and display recipe summaries. 
-    .done(response => createRecRecipeCards(response))
-    .fail(err => console.log(err));
-}
-
-// Query settings for recipe detail 
-const createRecipeDetailQuery = function (recipeId) {
-  recipeDetailSettings = {
-    "async": true,
-    "crossDomain": true,
-    "url": `https://rapidapi.p.rapidapi.com/recipes/${recipeId}/information`,
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      "x-rapidapi-key": "30f7c86108msh0a2c55a921ebb17p135deajsnfe7b5b9d6d81"
-    }
-  };
-}
-
-// Ajax call for spoonacular API recipe details
-const getRecipeDetails = function () {
-  $.ajax(recipeDetailSettings)
-  .done(response => createModal(response.id, response))
-  .fail(err => console.log(err));
-}
 
 // Create recommended recipe cards - 3 for now
 // for each recipe, create card, then create modal
@@ -109,13 +61,14 @@ const createRecRecipeCards = function (response) {
     let servings = servingsEl.text();
     let summary = summaryEl.text();
     let link = linkEl.attr('href');
+
     recipeToStorage(id, title, image)
     recipeDetailToStorage(id, title, image, cookTime, servings, summary, link);
   })
 }
 
 // Create Modal for each rec recipe card
-const createModal = function (id, recipe) {
+const createFoodModal = function (id, recipe) {
   // Create Modal HTML for DOM
   let div = $('<div>');
   div.html(
@@ -164,39 +117,146 @@ const renderFavoriteRecipes = function (favRecipes) {
     favRecipesEl.append(div);
     let recipeDetails = getStoredRecipeDetails();
     let details = recipeDetails.find(detail => detail.id === recipe.id)
-    createModal(recipe.id, details)
+    createFoodModal(recipe.id, details)
   })
 }
 
+/*
 
-// Render Favorite Drinks - When user reaches the favorites page, localstorage accessed 
+DRINKS FUNCTIONS
+
+*/
+const createRecDrinkCards = function (response) {
+  drinksEl.empty();
+  modalContainer.empty();
+  $.each(response.drinks, function (i, drink) {
+    let div = $('<div>');
+    div.html(
+      `
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover">
+          <div uk-toggle="target: #drinkmodal${drink.idDrink}">
+            <div class="uk-card-body">
+              <h3 id="recipeTitle" class="uk-card-title">${drink.strDrink}</h3>
+            </div>
+            <div class="uk-card-media-bottom">
+              <img id="recipeImg" src="${drink.strDrinkThumb}" alt="">
+            </div>
+          </div>
+          <div class="uk-card-footer">
+            <button class="uk-button uk-button-default favoriteDrinkBtn" data-modal="#drinkmodal${drink.idDrink}" data-id="${drink.idDrink}" data-title="${drink.strDrink}" data-image="${drink.strDrinkThumb}"><i class="fas fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      `
+    )
+    drinksEl.append(div);
+    createDrinkDetailQuery(drink.idDrink);
+    getDrinkDetails(drink.idDrink);
+  })
+
+  // Favorite Drink Button Event - Once clicked saves to localstorage
+  let favoriteDrinkBtn = $('.favoriteDrinkBtn')
+  favoriteDrinkBtn.click(function (e) {
+    let modalId = $(this).data('modal');
+    let summaryEl = $(`${modalId} .summary`)
+    let ingredientsEl = $(`${modalId} .ingredients`)
+
+    let id = $(this).data('id');
+    let title = $(this).data('title');
+    let image = $(this).data('image');
+    let summary = summaryEl.text();
+    let ingredients = ingredientsEl.text();
+
+    drinkToStorage(id, title, image)
+    drinkDetailToStorage(id, title, image, summary, ingredients);
+  })
+};
+
+// Create Modal for each rec drink card
+const createDrinkModal = function (id, drink) {
+  // Create Ingredients String
+  let ingArray = [drink.strIngredient1,drink.strIngredient2,drink.strIngredient3,drink.strIngredient4,drink.strIngredient5,drink.strIngredient6,drink.strIngredient7,drink.strIngredient8,drink.strIngredient9,drink.strIngredient10,drink.strIngredient11,drink.strIngredient12,drink.strIngredient13,drink.strIngredient14,drink.strIngredient15]
+  let ingredients = "";
+  $.each(ingArray, function(i, ing) {
+    if (ing !== null) {
+      ingredients += `${ing}, `;
+    }
+  })
+  ingredients = ingredients.substring(0, ingredients.length -2);
+  
+  // Create Modal HTML for DOM
+  let div = $('<div>');
+  div.html(
+    `
+    <div id="drinkmodal${id}" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h1 class="title">${drink.strDrink}</h1>
+        <div class="uk-padding-large" uk-overflow-auto>
+          <img src="${drink.strDrinkThumb}" alt="">
+          <p class="summary">${drink.strInstructions}</p>
+          <p>Ingredients: <span class="ingredients">${ingredients}</span></p>
+          <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Back</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    `
+  )
+  modalContainer.append(div);
+}
+
+const createFavDrinkModal = function (id, drink) {
+  // Create Modal HTML for DOM
+  let div = $('<div>');
+  div.html(
+    `
+    <div id="drinkmodal${id}" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h1 class="title">${drink.title}</h1>
+        <div class="uk-padding-large" uk-overflow-auto>
+          <img src="${drink.image}" alt="">
+          <p class="summary">${drink.summary}</p>
+          <p>Ingredients: <span class="ingredients">${drink.ingredients}</span></p>
+          <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Back</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    `
+  )
+  modalContainer.append(div);
+}
 
 
-
-// Modal popup? Create modal and add to DOM when cards are created? 
-
-
-
+const renderFavoriteDrinks = function (favDrinks) {
+  favDrinksEl.empty();
+  $.each(favDrinks, function (i, drink) {
+    let div = $('<div>');
+    div.html(
+      `
+      <div class="uk-margin-top uk-padding-small">
+        <div uk-toggle="target: #drinkmodal${drink.id}">
+          <div class="uk-card-body">
+            <h3 id="drinkTitle" class="uk-card-title">${drink.title}</h3>
+          </div>
+          <div class="uk-card-media-bottom">
+            <img id="drinkImg" src="${drink.image}" alt="">
+          </div>
+        </div>
+      </div>
+      `
+    )
+    favDrinksEl.append(div);
+    let drinkDetails = getStoredDrinkDetails();
+    let details = drinkDetails.find(detail => detail.id === drink.id)
+    createFavDrinkModal(drink.id, details)
+  })
+}
 
 // This is a response for recipes we can use
 let exResponse = [{id: 611026, title: "Apple Crisp III", image: "https://spoonacular.com/recipeImages/611026-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 47950, title: "Cinnamon Apple Crisp", image: "https://spoonacular.com/recipeImages/47950-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}, {id: 70306, title: "Easy Cinnamon Apple Pie", image: "https://spoonacular.com/recipeImages/70306-312x231.jpg", imageType: "jpg", usedIngredientCount: 3}]
-
-// $.each(exResponse, function(i, recipe) {
-//   let div = $('<div>');
-//   div.html(
-//     `
-//     <div>
-//       <div class="uk-card uk-card-default uk-card-hover">
-//         <div class="uk-card-body">
-//           <h3 id="recipeTitle" class="uk-card-title">${recipe.title}</h3>
-//         </div>
-//         <div class="uk-card-media-bottom">
-//           <img id="recipeImg" src="${recipe.image}" alt="">
-//         </div>
-//       </div>
-//     </div>
-//     `
-//   )
-//   recipesEl.append(div);
-// })
-
