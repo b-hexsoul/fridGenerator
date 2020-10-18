@@ -1,14 +1,37 @@
-#background {
-    background-image: url("p1-background.jpg");
+/* body {
+  background-image: url("background2.jpg");
+  background-repeat: repeat;
+  background-size: 850px;
+} */
+div.uk-container {
+  background-image: url("background1.jpg");
+  background-size: 640px;
+}
+
+ul.uk-slider-items {
+    height: 450px !important;
+    margin: 0px !important;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+i.fa-heart {
+  color:#666666;
+  /* after being clicked, can the heart be this color? #ffcccc; */
 }
 
 
-#searchRecipes {
-
-  opacity: .90;
-    
+button.favoriteRecipeBtn {
+  border: 0cm;
 }
 
-#searchForm {
-    
-    }
+div.uk-navbar-left{
+  font-family: Pacifico;
+  font-size: 38px;
+  color: #29a3a3;
+  padding-left: 10px;
+}
+
