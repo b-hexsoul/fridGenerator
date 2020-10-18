@@ -25,19 +25,23 @@ foodInput.keypress(function (e) {
 // Drinks page
 // Drink search Event
 searchDrinkBtn.click(function (e) {
-  ingredientsDrink = drinkInput.val().trim().split(', ')
-  createDrinkIngredientQuery(ingredientsDrink);
-  getRecDrinks()
-  drinkInput.val();
+  if (drinkInput.val() !== "") {
+    ingredientsDrink = drinkInput.val().trim().split(', ')
+    createDrinkIngredientQuery(ingredientsDrink);
+    getRecDrinks()
+    drinkInput.val();
+  };
 })
 
 // If user presses enter on input field after done inputting ingredients
 drinkInput.keypress(function (e) {
   if (e.which == 13) {
-    ingredientsDrink = drinkInput.val().trim().split(', ')
-    createDrinkIngredientQuery(ingredientsDrink);
-    getRecDrinks();
-    drinkInput.val('');
+    if (drinkInput.val() !== "") {
+      ingredientsDrink = drinkInput.val().trim().split(', ')
+      createDrinkIngredientQuery(ingredientsDrink);
+      getRecDrinks();
+      drinkInput.val('')
+    };
   }
 })
 
