@@ -12,14 +12,14 @@ searchFoodBtn.click(function (e) {
 })
 
 // If user presses enter on input field after done inputting ingredients
-// foodInput.keypress(function (e) {
-//   if (e.which == 13) {
-//     ingredients = foodInput.val().trim().split(', ')
-//     createIngredientQuery(ingredients);
-//     getRecRecipes();
-//     foodInput.val('');
-//   }
-// })
+foodInput.keypress(function (e) {
+  if (e.which == 13) {
+    ingredients = foodInput.val().trim().split(', ')
+    createIngredientQuery(ingredients);
+    getRecRecipes();
+    foodInput.val('');
+  }
+})
 
 
 // Drinks page
@@ -32,14 +32,14 @@ searchDrinkBtn.click(function (e) {
 })
 
 // If user presses enter on input field after done inputting ingredients
-// drinkInput.keypress(function (e) {
-//   if (e.which == 13) {
-//     ingredientsDrink = drinkInput.val().trim().split(', ')
-//     createDrinkIngredientQuery(ingredientsDrink);
-//     getRecDrinks();
-//     drinkInput.val('');
-//   }
-// })
+drinkInput.keypress(function (e) {
+  if (e.which == 13) {
+    ingredientsDrink = drinkInput.val().trim().split(', ')
+    createDrinkIngredientQuery(ingredientsDrink);
+    getRecDrinks();
+    drinkInput.val('');
+  }
+})
 
 
 // Favorites Page
