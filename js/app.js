@@ -5,9 +5,7 @@ let ingredientsDrink = '';
 searchFoodBtn.click(function (e) {
   ingredientsFood = foodInput.val().trim().split(', ')
   createIngredientQuery(ingredientsFood);
-  // getRecRecipes();
-  // delete below and uncomment above when ready for production, below uses prepopulated ingredients query
-  createRecRecipeCards(exResponse);
+  getRecRecipes();
   foodInput.val('');
 })
 
