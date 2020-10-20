@@ -35,7 +35,7 @@ const createRecRecipeCards = function (response) {
             </div>
           </div>
           <div class="uk-card-footer">
-            <button class="uk-button uk-button-default favoriteRecipeBtn" data-modal="#foodmodal${recipe.id}" data-id="${recipe.id}" data-title="${recipe.title}" data-image="${recipe.image}"><i class="fas fa-heart"></i></button>
+            <button class="uk-button uk-button-default favoriteRecipeBtn" data-modal="#foodmodal${recipe.id}" data-id="${recipe.id}" data-title="${recipe.title}" data-image="${recipe.image}"><i class="fas fa-heart fa-2x"></i></button>
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@ const createRecDrinkCards = function (response) {
             </div>
           </div>
           <div class="uk-card-footer">
-            <button class="uk-button uk-button-default favoriteDrinkBtn" data-modal="#drinkmodal${drink.idDrink}" data-id="${drink.idDrink}" data-title="${drink.strDrink}" data-image="${drink.strDrinkThumb}"><i class="fas fa-heart"></i></button>
+            <button class="uk-button uk-button-default favoriteDrinkBtn" data-modal="#drinkmodal${drink.idDrink}" data-id="${drink.idDrink}" data-title="${drink.strDrink}" data-image="${drink.strDrinkThumb}"><i class="fas fa-heart fa-2x"></i></button>
           </div>
         </div>
       </div>

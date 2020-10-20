@@ -3,14 +3,21 @@
   background-repeat: repeat;
   background-size: 850px;
 } */
-div.uk-container {
-  background-image: url("background1.jpg");
-  background-size: 640px;
+h1,
+h2,
+h3 {
+  font-family: "Pacifico", cursive;
+}
+
+body {
+  background: url("background1.jpg");
+  background-size: cover;
+  height: 100vh;
 }
 
 ul.uk-slider-items {
-    height: 450px !important;
-    margin: 0px !important;
+  height: 450px !important;
+  margin: 0px !important;
 }
 
 img {
@@ -19,19 +26,23 @@ img {
 }
 
 i.fa-heart {
-  color:#666666;
+  color: #666666;
   /* after being clicked, can the heart be this color? #ffcccc; */
 }
 
-
-button.favoriteRecipeBtn {
+button.favoriteRecipeBtn,
+button.favoriteDrinkBtn {
   border: 0cm;
 }
 
-div.uk-navbar-left{
+div.uk-navbar-left {
   font-family: Pacifico;
   font-size: 38px;
   color: #29a3a3;
   padding-left: 10px;
 }
 
+#drinkImg {
+  height: 250px;
+  width: 250px;
+}
